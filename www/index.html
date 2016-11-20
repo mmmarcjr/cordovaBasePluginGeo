@@ -36,7 +36,7 @@
 			}
 			
 			function getcur() {
-				navigator.geolocation.getCurrentPosition(onSuccess, onError);
+				navigator.geolocation.getCurrentPosition(onSuccess, onError,{ maximumAge: 1000, timeout: 5000, enableHighAccuracy: true } );
 			}
     </script>
   </head>
