@@ -13,7 +13,7 @@
 			//
 			var onSuccess = function(position) {
 				var element = document.getElementById('deviceProperties');
-				element.innerHTML = '<br />Latitude: '    + position.coords.latitude    			+ '<br />' +
+				element.innerHTML = 'Latitude: '    			+ position.coords.latitude    			+ '<br />' +
 														'Longitude: '         + position.coords.longitude         + '<br />' +
 														'Altitude: '          + position.coords.altitude          + '<br />' +
 														'Accuracy: '          + position.coords.accuracy          + '<br />' +
@@ -46,7 +46,7 @@
 		</header>
 		
 		<section>
-			<p id="deviceProperties">Loading device properties...</p>
+			<div id="deviceProperties" style="margin-top: 50px;">
 		</section>
 		
 		<footer>
