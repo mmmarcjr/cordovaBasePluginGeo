@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title>Cordova Base Plugin geolocation</title>
-		<link href="css/ratchet.min.css" rel="stylesheet" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
     <script type="text/javascript" charset="utf-8">
 			document.addEventListener("deviceready", onDeviceReady, false);
@@ -41,21 +43,25 @@
     </script>
   </head>
   <body>
-		<header class="bar bar-nav">
-			<h1 class="title">Cordova Base Plugin geolocation</h1>
-		</header>
-		
-		<section>
-			<div id="deviceProperties" style="margin-top: 50px;">
-		</section>
-		
-		<footer>
-			<nav class="bar bar-tab">
-				<a class="tab-item" href="index.html">
-					<span class="icon icon-home"></span>
-					<span class="tab-label">Home</span>
-				</a>
-			</nav>
-		</footer>
-  </body>
+		<div data-role="page">
+			<div data-role="header">
+				<h1>Cordova Base Plugin geolocation</h1>
+			</div>
+			<!-- /header -->
+
+			<div data-role="content">
+				<div id="deviceProperties" style="margin-top: 50px;">
+				<label for="txtNum1">Num 1:</label>
+				<input id="txtNum1" name="txtNum1" type="text" value="" />
+				<label for="txtNum2">Num 2:</label>
+				<input id="txtNum2" name="txtNum2" type="text" value="" /> <a data-inline="true" data-role="button">Add </a> Result : <label id="lblResult"></label>
+			</div>
+			<!-- /content -->
+
+			<div data-role="footer">
+				<h4>Code Handbook</h4>
+			</div>
+		</div>
+		<!-- /page -->
+	</body>
 </html>
