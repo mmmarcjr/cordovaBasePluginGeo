@@ -2,76 +2,60 @@
 <html>
 <head>
     <title>Cordova Base Plugin geolocation</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="viewport" id="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
+		
 		<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
 		<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 		<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    
+		<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
     <script type="text/javascript" charset="utf-8">
 			document.addEventListener("deviceready", onDeviceReady, false);
-			// onSuccess Callback
-			// This method accepts a Position object, which contains the
-			// current GPS coordinates
-			//
-			var onSuccess = function(position) {
-				var element = document.getElementById('deviceProperties');
-				element.innerHTML = 'Latitude: '    			+ position.coords.latitude    			+ '<br />' +
-														'Longitude: '         + position.coords.longitude         + '<br />' +
-														'Altitude: '          + position.coords.altitude          + '<br />' +
-														'Accuracy: '          + position.coords.accuracy          + '<br />' +
-														'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '<br />' +
-														'Heading: '           + position.coords.heading           + '<br />' +
-														'Speed: '             + position.coords.speed             + '<br />' +
-														'Timestamp: '         + position.timestamp                + '<br />';
+			var onSuccess = function(position) 
+			{
+				$('#geoInfo').html('Latitude: ' + position.coords.latitude 					+ '<br />' +
+									'Longitude: '         + position.coords.longitude         + '<br />' +
+									'Altitude: '          + position.coords.altitude          + '<br />' +
+									'Accuracy: '          + position.coords.accuracy          + '<br />' +
+									'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '<br />' +
+									'Heading: '           + position.coords.heading           + '<br />' +
+									'Speed: '             + position.coords.speed             + '<br />' +
+									'Timestamp: '         + position.timestamp                + '<br />');
 			};
 
 			// onError Callback receives a PositionError object
 			//
-			function onError(error) {
-				alert('code: '    + error.code    + '\nmessage: ' + error.message + '\n');
+			function onError(error) 
+			{
+				$('#geoInfo').html('ERROR<br />Code: ' + error.code + '<br />Message: ' + error.message);
 			}
 
 			// device APIs are available
 			//
-			function onDeviceReady() {
+			function onDeviceReady() 
+			{
 				getcur();
 			}
 			
-			function getcur() {
+			function getcur() 
+			{
 				navigator.geolocation.getCurrentPosition(onSuccess, onError,{ maximumAge: 1000, timeout: 5000, enableHighAccuracy: true } );
 			}
     </script>
   </head>
   <body>
-		<div data-role="page" id="pageone">
+		<div data-role="page">
 			<div data-role="header">
 				<h1>Cordova Base Plugin geolocation</h1>
 			</div>
-
+			
 			<div data-role="main" class="ui-content">
-				<p>Click on the link to see the pop effect.</p>
-				<a href="#pagetwo" data-transition="pop">Pop to Page Two</a>
-				<div id="deviceProperties" style="margin-top: 50px;"></div>
+				<div id="geoInfo">Loading Current Position ...</div>
 			</div>
 			
 			<div data-role="footer">
-				<h1>Footer Text</h1>
+				<h1><a href="index.html">Footer Text</a></h1>
 			</div>
 		</div>
-		
-		<div data-role="page" id="pagetwo">
-		<div data-role="header">
-			<h1>Welcome To My Homepage</h1>
-		</div>
-
-		<div data-role="main" class="ui-content">
-			<p>Click on the link to go back. <b>Note</b>: fade is default.</p>
-			<a href="#pageone">Go to Page One</a>
-		</div>
-
-		<div data-role="footer">
-			<h1>Footer Text</h1>
-		</div>
-	</div>
 	</body>
 </html>
