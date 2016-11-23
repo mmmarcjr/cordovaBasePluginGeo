@@ -10,6 +10,7 @@
     
 		<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
     <script type="text/javascript" charset="utf-8">
+			$(document).delegate('.ui-content', 'touchmove', false);​
 			document.addEventListener("deviceready", onDeviceReady, false);
 			var onSuccess = function(position) 
 			{
@@ -49,7 +50,7 @@
 				<h1>Cordova Base Plugin geolocation</h1>
 			</div>
 			
-			<div data-role="main" data-position="fixed">
+			<div data-role="content" class="ui-content">
 				<div id="geoInfo">Loading Current Position ...</div>
 			</div>
 			
