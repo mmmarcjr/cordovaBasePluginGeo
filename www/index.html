@@ -10,8 +10,20 @@
     
 		<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
     <script type="text/javascript" charset="utf-8">
-			$(document).delegate('.ui-content', 'touchmove', false);​
 			document.addEventListener("deviceready", onDeviceReady, false);
+
+			function onDeviceReady() 
+			{
+				$('#device').html('Device ready');
+				$('#geoInfo').html('Loading Current Position ...');
+				getcur();
+			}
+			
+			function getcur() 
+			{
+				navigator.geolocation.getCurrentPosition(onSuccess, onError,{ maximumAge: 1000, timeout: 5000, enableHighAccuracy: true } );
+			}
+			
 			var onSuccess = function(position) 
 			{
 				$('#geoInfo').html('Latitude: ' + position.coords.latitude 					+ '<br />' +
@@ -24,23 +36,9 @@
 									'Timestamp: '         + position.timestamp                + '<br />');
 			};
 
-			// onError Callback receives a PositionError object
-			//
 			function onError(error) 
 			{
 				$('#geoInfo').html('ERROR<br />Code: ' + error.code + '<br />Message: ' + error.message);
-			}
-
-			// device APIs are available
-			//
-			function onDeviceReady() 
-			{
-				getcur();
-			}
-			
-			function getcur() 
-			{
-				navigator.geolocation.getCurrentPosition(onSuccess, onError,{ maximumAge: 1000, timeout: 5000, enableHighAccuracy: true } );
 			}
     </script>
   </head>
@@ -52,12 +50,13 @@
 			
 			<div data-role="content" class="ui-content">
 				<br /><br /><br /><br /><br /><br /><br /><br /><br />
-				<div id="geoInfo">Loading Current Position ...</div>
+				<div id="device">Device loadin ...</div>
+				<div id="geoInfo"></div>
 				<br /><br /><br /><br /><br /><br /><br /><br /><br />
 			</div>
 			
 			<div data-role="footer" data-position="fixed">
-				<h1><a href="index.html">Footer Text</a></h1>
+				<h1>Footer Text</h1>
 			</div>
 		</div>
 	</body>
