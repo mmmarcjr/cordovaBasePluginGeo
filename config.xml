@@ -7,6 +7,7 @@
 	<plugin name="cordova-plugin-geolocation" source="npm" spec="~2.1.0" />
 	<preference name="DisallowOverscroll" value="true" />
 	<preference name="Fullscreen" value="true" />
+	<preference name="BackgroundColor" value="0xff0000ff"/>
 	<access origin="*" />
 	<allow-intent href="http://*/*" />
 	<allow-intent href="https://*/*" />
