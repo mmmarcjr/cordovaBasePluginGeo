@@ -15,11 +15,10 @@
 			
 			function onDeviceReady() 
 			{
-			$(document).on("pagecreate","#page2", function(){ 
 				 $('#refresh').on('click', function (e) {
 						refreshPage();
 				 });
-			});
+				 
 				setHeightScreen();
 				$('#device').html('Device ready');
 				$('#geoInfo').html('Loading Current Position ...');
@@ -93,7 +92,7 @@
 				<div id="device">Device loadin ...</div>
 				<div id="geoInfo"></div>
 				<div id="address"></div>
-				<div id="map" style="border: 1px solid; height:300px; width: 100%;">
+				<div id="map" style="border: 1px solid; height:300px; width: 100%;"></div>
 			</div>
 			
 			<div data-role="footer" data-position="fixed">
