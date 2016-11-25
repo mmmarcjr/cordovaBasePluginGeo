@@ -77,7 +77,8 @@
 			function refreshPage() {
 				var curPageID = $( ":mobile-pagecontainer" ).pagecontainer( "getActivePage" ).prop("id");
 				$( ":mobile-pagecontainer" ).pagecontainer( "change", "#" + curPageID, { 
-					allowSamePageTransition : true,
+					reloadPage              : true,
+					allowSamePageTransition : true
 				});
 			}    
 		</script>
