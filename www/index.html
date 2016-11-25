@@ -15,13 +15,11 @@
 			
 			function onDeviceReady() 
 			{
-				 $('#refresh').on('click', function (e) {
-						refreshPage();
-				 });
-				 
 				setHeightScreen();
-				$('#device').html('Device ready');
+				//$('#device').html('Device ready');
 				$('#geoInfo').html('Loading Current Position ...');
+				$('#address').html('');
+				$('#map').html('');
 				getcur();
 			}
 			
@@ -73,14 +71,6 @@
 						$('#address').html('Address: ' + address[0].formatted_address);
 				});
 			}
-			
-			function refreshPage() {
-				var curPageID = $( ":mobile-pagecontainer" ).pagecontainer( "getActivePage" ).prop("id");
-				$( ":mobile-pagecontainer" ).pagecontainer( "change", "#" + curPageID, { 
-					reloadPage              : true,
-					allowSamePageTransition : true
-				});
-			}    
 		</script>
   </head>
   <body>
@@ -90,14 +80,14 @@
 			</div>
 			
 			<div data-role="content" class="ui-content" style="background-color: yellow;">
-				<div id="device">Device loadin ...</div>
+				<!-- <div id="device">Device loadin ...</div> -->
 				<div id="geoInfo"></div>
 				<div id="address"></div>
 				<div id="map" style="border: 1px solid; height:300px; width: 100%;"></div>
 			</div>
 			
 			<div data-role="footer" data-position="fixed">
-				<button id="refresh" data-icon="refresh">Refresh</button>
+				<button onclick="javascript:onDeviceReady();" id="refresh" data-icon="refresh">Refresh</button>
 			</div>
 		</div>
 	</body>
