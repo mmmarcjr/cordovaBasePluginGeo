@@ -44,6 +44,17 @@
 				var mapConfig = {zoom:15, center:LatLng, mapTypeId:google.maps.MapTypeId.ROADMAP}
 				var map = new google.maps.Map($('#map').get(0), mapConfig);
 				new google.maps.Marker({map:map, position:LatLng, animation: google.maps.Animation.DROP});
+				getAddress(LatLng);
+			}
+			
+			function getAddress(LatLng)
+			{
+				var localisation = new google.maps.Geocoder();
+				localisation.geocode({"latLng" : LatLng}, function(address, status)
+				{
+					if (status == google.maps.GeocoderStatus.OK) 
+						$('#address').html('Address: ' + address[0].formatted_address);
+				});
 			}
     </script>
   </head>
