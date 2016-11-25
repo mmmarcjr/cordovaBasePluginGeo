@@ -11,11 +11,15 @@
    
 		<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
     <script type="text/javascript" charset="utf-8">
-			
 			document.addEventListener("deviceready", onDeviceReady, false);
 			
 			function onDeviceReady() 
 			{
+			$(document).on("pagecreate","#page2", function(){ 
+				 $('#refresh').on('click', function (e) {
+						refreshPage();
+				 });
+			});
 				setHeightScreen();
 				$('#device').html('Device ready');
 				$('#geoInfo').html('Loading Current Position ...');
@@ -70,10 +74,17 @@
 						$('#address').html('Address: ' + address[0].formatted_address);
 				});
 			}
-    </script>
+			
+			function refreshPage() {
+				var curPageID = $( ":mobile-pagecontainer" ).pagecontainer( "getActivePage" ).prop("id");
+				$( ":mobile-pagecontainer" ).pagecontainer( "change", "#" + curPageID, { 
+					allowSamePageTransition : true,
+				});
+			}    
+		</script>
   </head>
   <body>
-		<div data-role="page">
+		<div data-role="page" id="page1">
 			<div data-role="header" data-position="fixed" style="padding-top:10px;">
 				<h1>Cordova Base Plugin geolocation</h1>
 			</div>
@@ -86,7 +97,7 @@
 			</div>
 			
 			<div data-role="footer" data-position="fixed">
-				<h1>Footer Text</h1>
+				<button id="refresh" data-icon="refresh">Refresh</button>
 			</div>
 		</div>
 	</body>
