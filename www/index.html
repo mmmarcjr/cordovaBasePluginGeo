@@ -1,77 +1,18 @@
 <!DOCTYPE html>
 <html>
-<head>
+	<head>
     <title>Cordova Base Plugin geolocation</title>
 		<meta name="viewport" id="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
 		
-		<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
-		<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-		<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 		<script src="http://maps.google.com/maps/api/js?key=AIzaSyCIAkO_qU8Z3PUpjP26_7i3phsSI9l2fpM"></script>
+		
+		<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+		<script src="js/jquery/jquery-1.11.3.min.js"></script>
+		<script src="js/jquery/jquery.mobile-1.4.5.min.js"></script>
    
 		<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
-    <script type="text/javascript" charset="utf-8">
-			document.addEventListener("deviceready", onDeviceReady, false);
-			
-			function onDeviceReady() 
-			{
-				setHeightScreen();
-				//$('#device').html('Device ready');
-				$('#geoInfo').html('Loading Current Position ...');
-				$('#address').html('');
-				$('#map').html('');
-				getcur();
-			}
-			
-			function setHeightScreen()
-			{
-				var screen = $.mobile.getScreenHeight();
-				var header = $(".ui-header").hasClass("ui-header-fixed") ? $(".ui-header").outerHeight()  - 1 : $(".ui-header").outerHeight();
-				var footer = $(".ui-footer").hasClass("ui-footer-fixed") ? $(".ui-footer").outerHeight() - 1 : $(".ui-footer").outerHeight();
-				/* content div has padding of 1em = 16px (32px top+bottom). This step
-					 can be skipped by subtracting 32px from content var directly. */
-				var contentCurrent = $(".ui-content").outerHeight() - $(".ui-content").height();
-				var content = screen - header - footer - contentCurrent;
-				$(".ui-content").height(content);
-			}
-			
-			function getcur() 
-			{
-				navigator.geolocation.getCurrentPosition(onSuccess, onError, { maximumAge: 1000, timeout: 5000, enableHighAccuracy: true } );
-			}
-			
-			var onSuccess = function(position) 
-			{
-				var lat = position.coords.latitude;
-				var lon = position.coords.longitude;
-				$('#geoInfo').html('Latitude: ' + lat + '<br />Longitude: ' + lon);
-				showMap(lat, lon);
-			};
-
-			function onError(error) 
-			{
-				$('#geoInfo').html('ERROR<br />Code: ' + error.code + '<br />Message: ' + error.message);
-			}
-			
-			function showMap(latitude, longitude)
-			{
-				var LatLng = new google.maps.LatLng(latitude, longitude);
-				var mapConfig = {zoom:15, center:LatLng, mapTypeId:google.maps.MapTypeId.ROADMAP}
-				var map = new google.maps.Map($('#map').get(0), mapConfig);
-				new google.maps.Marker({map:map, position:LatLng, animation: google.maps.Animation.DROP});
-				getAddress(LatLng);
-			}
-			
-			function getAddress(LatLng)
-			{
-				var localisation = new google.maps.Geocoder();
-				localisation.geocode({"latLng" : LatLng}, function(address, status)
-				{
-					if (status == google.maps.GeocoderStatus.OK) 
-						$('#address').html(address[0].formatted_address);
-				});
-			}
-		</script>
+		
+		<script type="text/javascript" src="js/index.js"></script>
   </head>
   <body>
 		<div data-role="page" id="page1">
@@ -79,9 +20,8 @@
 				<h1>Cordova Base Plugin geolocation</h1>
 			</div>
 			
-			<div data-role="content" class="ui-content" style="background-color: yellow;">
-				<!-- <div id="device">Device loadin ...</div> -->
-				<table>
+			<div data-role="content" class="ui-content" zstyle="background-color: yellow;">
+				<table id="info">
 					<tr>
 						<td valign="top">Info: </td>
 						<td><div id="geoInfo"></div></td>
