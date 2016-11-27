@@ -9,7 +9,7 @@
 	<preference name="DisallowOverscroll" value="true" />
 	<preference name="Fullscreen" value="true" />
 	<access origin="*" />
-	<allow-intent href="https://code.jquery.com/*" />
+	<allow-intent href="http://code.jquery.com/*" />
 	<allow-intent href="http://maps.google.com/*" />
 	<allow-navigation href="http://maps.google.com/*" />
 	<platform name="android">
