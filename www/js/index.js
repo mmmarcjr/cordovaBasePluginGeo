@@ -1,5 +1,10 @@
 document.addEventListener("deviceready", onDeviceReady, false);
 
+$(window).on("orientationchange",function(){
+	setContentScreen();
+	setMapHeight();
+});
+
 function onDeviceReady() 
 {
 	showLoading();
