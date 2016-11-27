@@ -1,12 +1,15 @@
 document.addEventListener("deviceready", onDeviceReady, false);
 
-/*
-$(window).on("orientationchange",function(){
-  //$('#geoInfo').html("The orientation has changed!");
+function onDeviceReady() 
+{
+	showLoading();
 	setContentScreen();
-	setMapHeight();
-});
-*/
+	$('#geoInfo').html('Loading Current Position ...');
+	$('#address').html('');
+	$('#map').html('');
+	
+	getcur();
+}
 
 function showLoading()
 {
@@ -18,15 +21,6 @@ function hideLoading()
 	$.mobile.loading( "hide" );
 }
 
-function onDeviceReady() 
-{
-	showLoading();
-	setContentScreen();
-	$('#geoInfo').html('Loading Current Position ...');
-	$('#address').html('');
-	$('#map').html('');
-	getcur();
-}
 
 function setContentScreen()
 {
@@ -36,6 +30,7 @@ function setContentScreen()
 	/* content div has padding of 1em = 16px (32px top+bottom). This step can be skipped by subtracting 32px from content var directly. */
 	var contentCurrent = $(".ui-content").outerHeight() - $(".ui-content").height();
 	var content = screen - header - footer - contentCurrent;
+	$(".ui-content").height(content);
 }
 
 
