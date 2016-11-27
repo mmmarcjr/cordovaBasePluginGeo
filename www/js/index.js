@@ -2,7 +2,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
 
 
 $(window).on("orientationchange",function(){
-  $('#geoInfo').html("The orientation has changed!");
+  //$('#geoInfo').html("The orientation has changed!");
 	setContentScreen();
 	setMapHeight();
 });
@@ -40,7 +40,6 @@ function setContentScreen()
 
 function setMapHeight()
 {
-	$('#geoInfo').html("setMapHeight");
 	var screen = $(".ui-content").height();
 	var info = $("#info").height();
 	$("#map").height(screen - info - 1);
