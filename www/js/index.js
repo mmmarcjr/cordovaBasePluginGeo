@@ -1,11 +1,12 @@
 document.addEventListener("deviceready", onDeviceReady, false);
 
-
+/*
 $(window).on("orientationchange",function(){
   //$('#geoInfo').html("The orientation has changed!");
 	setContentScreen();
 	setMapHeight();
 });
+*/
 
 function showLoading()
 {
