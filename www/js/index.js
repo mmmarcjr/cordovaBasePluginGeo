@@ -2,7 +2,8 @@ document.addEventListener("deviceready", onDeviceReady, false);
 
 
 $(window).on("orientationchange",function(){
-  setContentScreen();
+  $('#geoInfo').html("The orientation has changed!");
+	setContentScreen();
 });
 
 function showLoading()
