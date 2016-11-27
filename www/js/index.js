@@ -36,6 +36,7 @@ function setContentScreen()
 	var contentCurrent = $(".ui-content").outerHeight() - $(".ui-content").height();
 	var content = screen - header - footer - contentCurrent;
 	$(".ui-content").height(content);
+  $('#geoInfo').html($(".ui-content").height());
 }
 
 
