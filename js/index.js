@@ -2,10 +2,11 @@ document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() 
 {
+	setContentScreen();
 	$('#geoInfo').html('Loading Current Position ...');
 	$('#address').html('');
 	$('#map').html('');
-	setContentScreen();
+	
 	getcur();
 }
 
@@ -20,6 +21,18 @@ function setContentScreen()
 	$(".ui-content").height(content);
 }
 
+
+function setMapHeight()
+{
+	var screen = $(".ui-content").height();
+	var info = $("#info").height();
+	//alert(screen);
+	//alert(info);
+	$("#map").height(screen - info - 1);
+	//$("info").height(content);
+}
+
+
 function getcur() 
 {
 	navigator.geolocation.getCurrentPosition(onSuccess, onError, { maximumAge: 1000, timeout: 5000, enableHighAccuracy: true } );
@@ -30,6 +43,7 @@ var onSuccess = function(position)
 	var lat = position.coords.latitude;
 	var lon = position.coords.longitude;
 	$('#geoInfo').html('Latitude: ' + lat + '<br />Longitude: ' + lon);
+	setMapHeight();
 	showMap(lat, lon);
 };
 
@@ -53,6 +67,9 @@ function getAddress(LatLng)
 	localisation.geocode({"latLng" : LatLng}, function(address, status)
 	{
 		if (status == google.maps.GeocoderStatus.OK) 
+		{
 			$('#address').html(address[0].formatted_address);
+			setMapHeight();
+		}
 	});
 }
