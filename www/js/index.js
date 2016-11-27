@@ -1,13 +1,9 @@
 document.addEventListener("deviceready", onDeviceReady, false);
 
-// Bind an event to window.orientationchange that, when the device is turned,
-// gets the orientation and displays it to on screen.
-$( window ).on( "orientationchange", function( event ) {
-	setContentScreen();;
+
+$(window).on("orientationchange",function(){
+  $('#geoInfo').html("The orientation has changed!");
 });
- 
-// You can also manually force this event to fire.
-$( window ).orientationchange();
 
 function showLoading()
 {
