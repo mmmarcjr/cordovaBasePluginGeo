@@ -1,12 +1,31 @@
 document.addEventListener("deviceready", onDeviceReady, false);
 
+// Bind an event to window.orientationchange that, when the device is turned,
+// gets the orientation and displays it to on screen.
+$( window ).on( "orientationchange", function( event ) {
+	setContentScreen();;
+});
+ 
+// You can also manually force this event to fire.
+$( window ).orientationchange();
+
+function showLoading()
+{
+	$.mobile.loading( 'show', {text: '', textVisible: 0, theme: 0, textonly: 0, html: ""});
+}
+
+function hideLoading()
+{
+	$.mobile.loading( "hide" );
+}
+
 function onDeviceReady() 
 {
+	showLoading();
 	setContentScreen();
 	$('#geoInfo').html('Loading Current Position ...');
 	$('#address').html('');
 	$('#map').html('');
-	
 	getcur();
 }
 
@@ -26,10 +45,7 @@ function setMapHeight()
 {
 	var screen = $(".ui-content").height();
 	var info = $("#info").height();
-	//alert(screen);
-	//alert(info);
 	$("#map").height(screen - info - 1);
-	//$("info").height(content);
 }
 
 
@@ -45,11 +61,13 @@ var onSuccess = function(position)
 	$('#geoInfo').html('Latitude: ' + lat + '<br />Longitude: ' + lon);
 	setMapHeight();
 	showMap(lat, lon);
+	hideLoading();
 };
 
 function onError(error) 
 {
 	$('#geoInfo').html('ERROR<br />Code: ' + error.code + '<br />Message: ' + error.message);
+	hideLoading();
 }
 
 function showMap(latitude, longitude)
