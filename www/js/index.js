@@ -40,10 +40,10 @@ function setContentScreen()
 
 function setMapHeight()
 {
+	$('#geoInfo').html("setMapHeight");
 	var screen = $(".ui-content").height();
 	var info = $("#info").height();
 	$("#map").height(screen - info - 1);
-	$('#geoInfo').html("setMapHeight");
 }
 
 
