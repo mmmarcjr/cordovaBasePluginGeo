@@ -1,16 +1,22 @@
 document.addEventListener("deviceready", onDeviceReady, false);
 
-$(window).on("orientationchange",function(){
+$(window).on("orientationchange",function()
+{
 	setContentScreen();
 	setMapHeight();
 });
 
 function onDeviceReady() 
 {
-	showLoading();
 	setContentScreen();
-	$('#geoInfo').html('Loading Current Position ...');
-	$('#address').html('');
+	$('#geoAddress').html('Loading Current Position ...');
+	$('#geoLatitude').html('');
+	$('#geoLongitude').html('');
+	$('#geoAltitude').html('');
+	$('#geoAccuracy').html('');
+	$('#geoAlAc').html('');
+	$('#geoSpeed').html('');
+	$('#geoTimestamp').html('');
 	$('#map').html('');
 	
 	getcur();
@@ -26,7 +32,6 @@ function hideLoading()
 	$.mobile.loading( "hide" );
 }
 
-
 function setContentScreen()
 {
 	var screen = $.mobile.getScreenHeight();
@@ -38,17 +43,16 @@ function setContentScreen()
 	$(".ui-content").height(content);
 }
 
-
 function setMapHeight()
 {
 	var screen = $(".ui-content").height();
-	var info = $("#info").height();
+	var info = $("#geoAddress").height();
 	$("#map").height(screen - info - 1);
 }
 
-
 function getcur() 
 {
+	showLoading();
 	navigator.geolocation.getCurrentPosition(onSuccess, onError, { maximumAge: 1000, timeout: 5000, enableHighAccuracy: true } );
 }
 
@@ -56,7 +60,13 @@ var onSuccess = function(position)
 {
 	var lat = position.coords.latitude;
 	var lon = position.coords.longitude;
-	$('#geoInfo').html('Latitude: ' + lat + '<br />Longitude: ' + lon);
+	$('#geoLatitude').html(position.coords.latitude);
+	$('#geoLongitude').html(position.coords.longitude);
+	$('#geoAltitude').html(position.coords.altitude);
+	$('#geoAccuracy').html(position.coords.accuracy);
+	$('#geoAlAc').html(position.coords.altitudeAccuracy);
+	$('#geoSpeed').html(position.coords.speed);
+	$('#geoTimestamp').html(position.timestamp);
 	setMapHeight();
 	showMap(lat, lon);
 	hideLoading();
@@ -64,7 +74,7 @@ var onSuccess = function(position)
 
 function onError(error) 
 {
-	$('#geoInfo').html('ERROR<br />Code: ' + error.code + '<br />Message: ' + error.message);
+	$('#geoAddress').html('ERROR<br />Code: ' + error.code + '<br />Message: ' + error.message);
 	hideLoading();
 }
 
@@ -84,8 +94,8 @@ function getAddress(LatLng)
 	{
 		if (status == google.maps.GeocoderStatus.OK) 
 		{
-			$('#address').html(address[0].formatted_address);
-			setMapHeight();
+			$('#geoAddress').html(address[0].formatted_address);
+				setMapHeight();
 		}
 	});
 }
