@@ -21,7 +21,6 @@
 		
 		<div data-role="page" id="page1">
 			<div data-role="header" data-position="fixed">
-				<a href="#page2" data-role="button" data-icon="arrow-r" data-inline="true">Geo Info</a>
 				<h1>ShuOu</h1>
 			</div>
 			
@@ -30,15 +29,19 @@
 				<div id="map" style="border: 1px solid; height:300px; width: 100%;"></div>
 			</div>
 			
-			<div data-role="footer" data-position="fixed" style="text-align: center;">
-				<button onclick="javascript:onDeviceReady();" id="refresh" data-icon="refresh">Refresh</button></h1>
+			<div data-role="footer" data-position="fixed">
+				<table width="100%">
+					<tr>
+						<td align="left"><a href="#page2" data-role="button" data-icon="info" data-inline="true" style="margin-left:.625em;">Geo Info</a></td>
+						<td align="right"><a href="javascript:onDeviceReady();" id="refresh" data-role="button" data-icon="refresh" data-inline="true">Refresh</a></td>
+					</tr>
+				</table>
 			</div>
 		</div>
 		
 		<div data-role="page" id="page2">
 		
 			<div data-role="header" data-position="fixed">
-				<a href="#page1" data-role="button" data-icon="arrow-l" data-inline="true">Map</a>
 				<h1>ShuOu - Info</h1>
 			</div>
 			
@@ -54,8 +57,13 @@
 				</table>
 			</div>
 			
-			<div data-role="footer" data-position="fixed" style="text-align:center;">
-				<button onclick="javascript:onDeviceReady();" id="refresh" data-icon="refresh">Refresh</button></h1>
+			<div data-role="footer" data-position="fixed">
+				<table width="100%">
+					<tr>
+						<td align="left"><a href="#page1" data-role="button" data-icon="location" data-inline="true" style="margin-left:.625em;">Map</a></td>
+						<td align="right"><a href="javascript:onDeviceReady();" id="refresh" data-role="button" data-icon="refresh" data-inline="true">Refresh</a></td>
+					</tr>
+				</table>
 			</div>
 		</div>
 		
