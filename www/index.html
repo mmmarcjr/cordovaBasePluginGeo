@@ -20,16 +20,16 @@
 	<body>
 		
 		<div data-role="page" id="page1">
-			<div data-role="header" data-position="fixed">
+			<div data-role="header" data-position="fixed" id="p1Header">
 				<h1>ShuOu</h1>
 			</div>
 			
-			<div data-role="content" class="ui-content">
-				<div id="geoAddress"></div>
-				<div id="map" style="border: 1px solid; height:300px; width: 100%;"></div>
+			<div data-role="content" class="ui-content" id="p1Content" zstyle="background-color: yellow;">
+				<div id="geoAddress" style="height:50px;"></div>
+				<div id="map" style="border: 1px solid; height:50px; width: 100%;"></div>
 			</div>
 			
-			<div data-role="footer" data-position="fixed">
+			<div data-role="footer" data-position="fixed" id="p1footer">
 				<table width="100%">
 					<tr>
 						<td align="left"><a href="#page2" data-role="button" data-icon="info" data-inline="true" style="margin-left:.625em;">Geo Info</a></td>
